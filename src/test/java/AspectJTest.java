@@ -11,7 +11,7 @@ import java.util.List;
 public class AspectJTest {
     @Test
     public void test(){
-        exec("export JAVA_HOME=/usr/local/jdk8;mvn clean test  -Dtest=AnnotationAopTest");
+        exec("export JAVA_HOME=/usr/local/jdk8;mvn -f pom-ajc.xml clean test -Dtest=AnnotationAopTest");
     }
 
     public static List<String> exec(String cmd) {
