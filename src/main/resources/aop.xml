@@ -7,10 +7,10 @@
     <bean id="aspectAdvice" class="com.chapa.advice.TestAdvice"/>
     <bean id="secondAdvice" class="com.chapa.advice.SecondAdvice"/>
 
-    <aop:config proxy-target-class="false">
+    <aop:config proxy-target-class="true" expose-proxy="true">
         <aop:aspect id="TestAspect" ref="aspectAdvice" order="2">
             <!--配置com.spring.service包下所有类或接口的所有方法-->
-            <aop:pointcut id="businessService" expression="execution(* com.chapa.service.*.*(..))" />
+            <aop:pointcut id="businessService" expression="execution(* com.chapa.service.*.h*(..))" />
             <aop:before pointcut-ref="businessService" method="doBefore"/>
             <aop:after pointcut-ref="businessService" method="doAfter"/>
             <aop:around pointcut-ref="businessService" method="doAround"/>
@@ -19,14 +19,29 @@
 
         <aop:aspect id="secondAspect" ref="secondAdvice" order="3">
             <!--配置com.spring.service包下所有类或接口的所有方法-->
-            <aop:pointcut id="businessService" expression="execution(* com.chapa.service.*.*(..))" />
-            <aop:before pointcut-ref="businessService" method="doBefore"/>
-            <aop:after pointcut-ref="businessService" method="doAfter"/>
-            <aop:around pointcut-ref="businessService" method="doAround"/>
-            <aop:after-throwing pointcut-ref="businessService" method="doThrowing" throwing="ex"/>
+            <aop:pointcut id="businessService2" expression="execution(* com.chapa.service.*.hhh(..))" />
+            <aop:before pointcut-ref="businessService2" method="doBefore"/>
+            <aop:after pointcut-ref="businessService2" method="doAfter"/>
+            <aop:around pointcut-ref="businessService2" method="doAround"/>
+            <aop:after-throwing pointcut-ref="businessService2" method="doThrowing" throwing="ex"/>
+        </aop:aspect>
+
+        <aop:aspect>
+            <aop:declare-parents
+                    types-matching="com.chapa.service.TestServiceImpl"
+                    implement-interface="com.chapa.service.IIntroduce"
+                    default-impl="com.chapa.service.IntroduceImpl"/>
         </aop:aspect>
 
     </aop:config>
-    <bean class="com.chapa.service.TestServiceImpl"></bean>
+
+    <bean id="testService" class="com.chapa.service.TestServiceImpl" scope="prototype">
+        <aop:scoped-proxy/>
+    </bean>
     <bean class="com.chapa.service.TestServiceWithoutInterface"></bean>
+    <bean id="singletonBean" class="com.chapa.service.SingletonBean" >
+        <property name="testService">
+            <ref bean="testService" />
+        </property>
+    </bean>
 </beans>

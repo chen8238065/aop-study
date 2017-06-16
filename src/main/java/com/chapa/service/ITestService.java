@@ -5,4 +5,6 @@ package com.chapa.service;
  */
 public interface ITestService {
     void hhh();
+    void hprintTime();
+    void hcur();
 }

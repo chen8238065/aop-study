@@ -1,6 +1,8 @@
 import com.chapa.annotation.service.ITestService;
 import com.chapa.annotation.service.TestServiceImpl;
 import com.chapa.annotation.service.TestServiceWithoutInterface;
+import com.chapa.annotation.service.IIntroduce;
+import org.aspectj.lang.annotation.DeclareParents;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +39,7 @@ public class AnnotationAopTest {
         System.out.println("###############################################");
         ClassPathXmlApplicationContext ctx=new ClassPathXmlApplicationContext("classpath:aop-annotation.xml");
         System.out.println(ctx.getBean("testServiceImpl"));
+        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
     }
 
     /**
@@ -47,6 +50,7 @@ public class AnnotationAopTest {
         System.out.println("###############################################");
         testService =new TestServiceImpl();
         testService.hhh();
+        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
     }
 
     /**
@@ -56,11 +60,26 @@ public class AnnotationAopTest {
     public void testWithContianer(){
         System.out.println("###############################################");
         testService.hhh();
+        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
     }
 
     @Test
     public void testProxyWithClass(){
         System.out.println("###############################################");
         serviceWithoutInterface.hhh();
+    }
+    @Test
+    public void testDeclareParents(){
+        System.out.println("###############################################");
+        ((IIntroduce)testService).sss();
+        testService.hhh();
+        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+    }
+
+    @Test
+    public void testArgs(){
+        System.out.println("###############################################");
+        testService.say("chapa","nice to meet you!");
+        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
     }
 }

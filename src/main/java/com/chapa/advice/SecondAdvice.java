@@ -15,7 +15,7 @@ public class SecondAdvice {
         long time = System.currentTimeMillis();
         Object retVal = pjp.proceed();
         time = System.currentTimeMillis() - time;
-        System.out.println("SecondAdvice process time: " + time + " ms");
+        System.out.println(pjp.getSignature().getName()+" SecondAdvice process time: " + time + " ms");
         return retVal;
     }
 

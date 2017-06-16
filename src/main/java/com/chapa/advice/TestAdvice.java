@@ -15,7 +15,7 @@ public class TestAdvice {
         long time = System.currentTimeMillis();
         Object retVal = pjp.proceed();
         time = System.currentTimeMillis() - time;
-        System.out.println("TestAdvice process time: " + time + " ms");
+        System.out.println(pjp.getSignature().getName()+" TestAdvice process time: " + time + " ms");
         return retVal;
     }
 

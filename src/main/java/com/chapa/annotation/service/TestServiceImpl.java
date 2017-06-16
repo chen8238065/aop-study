@@ -12,4 +12,9 @@ public class TestServiceImpl implements ITestService {
     public void hhh() {
         System.out.println("TestServiceImpl with interface");
     }
+
+    @Override
+    public void say(String var, String word) {
+        System.out.println("I`m "+var+"! "+word);
+    }
 }
