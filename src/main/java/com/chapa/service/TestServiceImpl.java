@@ -24,6 +24,6 @@ public class TestServiceImpl implements  ITestService{
 
     public void hcur(){
         System.out.println("TestServiceImpl with interface");
-        ((ITestService) AopContext.currentProxy()).hprintTime();
+        hprintTime();
     }
 }

@@ -82,4 +82,11 @@ public class AnnotationAopTest {
         testService.say("chapa","nice to meet you!");
         System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
     }
+
+    @Test
+    public void testCallSelf(){
+        System.out.println("###############################################");
+        testService.callSlf();
+        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+    }
 }

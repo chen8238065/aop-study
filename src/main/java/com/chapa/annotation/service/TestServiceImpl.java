@@ -17,4 +17,9 @@ public class TestServiceImpl implements ITestService {
     public void say(String var, String word) {
         System.out.println("I`m "+var+"! "+word);
     }
+
+    @Override
+    public void callSlf() {
+        hhh();
+    }
 }
